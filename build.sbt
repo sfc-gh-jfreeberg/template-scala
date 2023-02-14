@@ -12,3 +12,5 @@ libraryDependencies ++= Seq(
   "org.scalactic" %% "scalactic" % "3.2.15",
   "org.scalatest" %% "scalatest" % "3.2.15" % "test"
 )
+
+// TODO: Add config for fat jar compilation

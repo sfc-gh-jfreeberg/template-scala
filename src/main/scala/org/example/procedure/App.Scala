@@ -4,13 +4,11 @@ import com.snowflake.snowpark.functions.col
 import com.snowflake.snowpark.types._
 import com.snowflake.snowpark.{Row, Session}
 import org.example.function.ExampleFunction.combineStrings
+import org.example.util.LocalSession
 
 object App {
 
-  def main(args: Array[String]): Unit = {
-
-    val session = Session.builder.configFile("dev.properties").create
-
+  def run(session: Session): Unit = {
     val schema = StructType(Seq(
       StructField("Hello", StringType),
       StructField("World", StringType)))
@@ -29,5 +27,11 @@ object App {
       .show
 
     session.close()
+  }
+
+  def main(args: Array[String]): Unit = {
+    val session = LocalSession.getLocalSession()
+
+    run(session)
   }
 }

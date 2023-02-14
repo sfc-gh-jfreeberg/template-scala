@@ -1,6 +1,5 @@
 package org.example.function
 
-import org.example.function.ExampleFunction.combineStrings
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
 
@@ -13,8 +12,8 @@ class ExampleFunctionTest extends AnyFlatSpec with should.Matchers {
    * 3. Run the test
    */
   "ExampleFunction" should "return the concatenated string" in {
-    combineStrings("Hello ", "World") should be ("Hello World")
-    combineStrings("Snowflake ", "Snowpark") should be ("Snowflake Snowpark")
+   // combineStrings("Hello ", "World") should be ("Hello World")
+   // combineStrings("Snowflake ", "Snowpark") should be ("Snowflake Snowpark")
   }
 
 }

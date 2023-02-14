@@ -7,3 +7,12 @@
 .idea/
 
 .DS_Store
+
+# Scala plugins for VS Code
+.metals/
+.bloop/
+
+.vscode/
+
+# Properties file for local development
+src/main/resources/dev.properties
