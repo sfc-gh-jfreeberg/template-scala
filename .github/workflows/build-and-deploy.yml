@@ -39,7 +39,7 @@ jobs:
     env:
       SNOWSQL_ACCOUNT: PM.PM_AWS_US_WEST_2
       SNOWSQL_USER: JASONFREEBERG
-      SNOWSQL_PWD: ${{ secrets.SF_PASSWORD }}
+      SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
@@ -52,4 +52,4 @@ jobs:
           SNOWSQL_DEST=~/snowflake SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-1.2.24-linux_x86_64.bash
 
       - name: Deploy jobs
-        run: snowsql -f sql/resources.sql
+        run: ~/snowflake/snowsql -f sql/resources.sql
