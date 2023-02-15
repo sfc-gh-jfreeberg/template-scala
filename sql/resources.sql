@@ -4,7 +4,7 @@ USE WAREHOUSE JASONFREEBERG_WH;
 
 CREATE OR REPLACE STAGE artifacts;
 
-PUT file://target/scala-2.12/scala-template-assembly-0.1.0.jar @~/artifacts
+PUT file://*.jar @~/artifacts;
 
 CREATE OR REPLACE PROCEDURE MYPROC(msg STRING)
   RETURNS STRING
