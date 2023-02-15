@@ -3,30 +3,33 @@ package org.example.procedure
 import com.snowflake.snowpark.functions.col
 import com.snowflake.snowpark.types._
 import com.snowflake.snowpark.{Row, Session}
-import org.example.function.ExampleFunction.myUdf
+import org.example.function.ExampleFunction
 import org.example.util.LocalSession
 
 object App {
 
-  def run(session: Session): Unit = {
+  def run(session: Session, msg: String = ""): String = {
     val schema = StructType(Seq(
       StructField("Hello", StringType),
       StructField("World", StringType)))
 
     val data = Seq(
-      Row.fromSeq(Seq("Welcome to", "Snowflake!")),
-      Row.fromSeq(Seq("Get started:", "http://www.snowflake.com/etc")))
+      Row.fromSeq(Seq("Welcome to ", "Snowflake!")),
+      Row.fromSeq(Seq("Get started: ", "http://www.snowflake.com/etc")))
 
     val df = session.createDataFrame(data, schema)
 
+    val func = session.udf.registerTemporary(ExampleFunction.combine)
+
     df
       .select(
-        myUdf.apply(
+        func.apply(
           col("Hello"),
           col("World")))
       .show
 
     session.close()
+    "Hello world"
   }
 
   def main(args: Array[String]): Unit = {

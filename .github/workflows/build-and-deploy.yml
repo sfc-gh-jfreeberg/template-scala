@@ -1,0 +1,54 @@
+name: Deploy Snowpark Apps
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'sbt'
+
+      - name: Run tests
+        run: sbt test
+
+      - name: Build app
+        run: sbt assembly
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: java-app
+          path: '${{ github.workspace }}/target/scala-2.12/*.jar'
+
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SNOWSQL_ACCOUNT: PM.PM_AWS_US_WEST_2
+      SNOWSQL_USER: github
+      SNOWSQL_PWD: ${{ secrets.SF_PASSWORD }}
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: java-app
+
+      - name: Install SnowSQL
+        run: |
+          curl -O https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.24-linux_x86_64.bash
+          SNOWSQL_DEST=~/snowflake SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-1.2.24-linux_x86_64.bash
+
+      - name: Deploy jobs
+        run: snowsql -f sql/resources.sql

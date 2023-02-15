@@ -8,9 +8,7 @@ lazy val root = (project in file("."))
   )
 
 libraryDependencies ++= Seq(
-  "com.snowflake" % "snowpark" % "1.7.0",
+  "com.snowflake" % "snowpark" % "1.7.0" % "provided",
   "org.scalactic" %% "scalactic" % "3.2.15",
   "org.scalatest" %% "scalatest" % "3.2.15" % "test"
 )
-
-// TODO: Add config for fat jar compilation
