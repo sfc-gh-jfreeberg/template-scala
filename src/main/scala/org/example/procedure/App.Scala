@@ -8,7 +8,7 @@ import org.example.util.LocalSession
 
 object App {
 
-  def run(session: Session, msg: String = ""): String = {
+  def run(session: Session, msg: String): String = {
     val schema = StructType(Seq(
       StructField("Hello", StringType),
       StructField("World", StringType)))
@@ -28,13 +28,12 @@ object App {
           col("World")))
       .show
 
-    session.close()
     "Hello world"
   }
 
   def main(args: Array[String]): Unit = {
     val session = LocalSession.getLocalSession()
 
-    run(session)
+    run(session, "")
   }
 }
