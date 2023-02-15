@@ -3,7 +3,7 @@ package org.example.procedure
 import com.snowflake.snowpark.functions.col
 import com.snowflake.snowpark.types._
 import com.snowflake.snowpark.{Row, Session}
-import org.example.function.ExampleFunction.combineStrings
+import org.example.function.ExampleFunction.myUdf
 import org.example.util.LocalSession
 
 object App {
@@ -21,7 +21,7 @@ object App {
 
     df
       .select(
-        combineStrings.apply(
+        myUdf.apply(
           col("Hello"),
           col("World")))
       .show
