@@ -45,6 +45,8 @@ jobs:
         with:
           name: java-app
 
+      - run: ls
+
       - name: Install SnowSQL
         run: |
           curl -O https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.24-linux_x86_64.bash
