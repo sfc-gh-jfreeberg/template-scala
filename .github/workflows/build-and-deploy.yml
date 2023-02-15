@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     env:
-      SNOWSQL_ACCOUNT: PM.PM_AWS_US_WEST_2
+      SNOWSQL_ACCOUNT: pm-pm_aws_us_west_2
       SNOWSQL_USER: JASONFREEBERG
       SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
     steps:
