@@ -38,9 +38,12 @@ jobs:
     env:
       SNOWSQL_ACCOUNT: pm-pm_aws_us_west_2
       SNOWSQL_USER: jasonfreeberg
+      SNOWSQL_DATABASE: JASONFREEBERG
+      SNOWSQL_SCHEMA: PUBLIC
+      SNOWSQL_WAREHOUSE: JASONFREEBERG_WH
       SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
     steps:
-      - uses: actions/checkout@v3  # Necessary for the sql/resources.sql file
+      - uses: actions/checkout@v3  # Necessary for the resources.sql file
 
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
