@@ -36,11 +36,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     env:
-      SNOWSQL_ACCOUNT: pm-pm_aws_us_west_2
-      SNOWSQL_USER: jasonfreeberg
-      SNOWSQL_DATABASE: JASONFREEBERG
-      SNOWSQL_SCHEMA: PUBLIC
-      SNOWSQL_WAREHOUSE: JASONFREEBERG_WH
+      SNOWSQL_ACCOUNT: '<REPLACE: your account id>'
+      SNOWSQL_USER: '<REPLACE: your username>'
+      SNOWSQL_DATABASE: '<REPLACE: your database>'
+      SNOWSQL_SCHEMA: '<REPLACE: your public>'
+      SNOWSQL_WAREHOUSE: '<REPLACE: your warehouse>'
       SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
     steps:
       - uses: actions/checkout@v3  # Necessary for the resources.sql file

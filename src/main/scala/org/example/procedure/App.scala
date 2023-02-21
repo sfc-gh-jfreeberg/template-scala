@@ -15,7 +15,7 @@ object App {
 
     val data = Seq(
       Row.fromSeq(Seq("Welcome to ", "Snowflake!")),
-      Row.fromSeq(Seq("Get started: ", "http://www.snowflake.com/etc")))
+      Row.fromSeq(Seq("Learn more: ", "https://www.snowflake.com/snowpark/")))
 
     val df = session.createDataFrame(data, schema)
 
