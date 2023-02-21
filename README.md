@@ -9,8 +9,8 @@ Use this project template to start writing data applications on Snowflake using 
 To develop your applications locally, you will need
 
 - A Snowflake account
-- Java 8 
-- Scala 2.12
+- [Java 8](https://adoptium.net/temurin/releases/?version=8) 
+- [Scala 2.12](https://www.scala-lang.org/download/)
 - An IDE or code editor (IntelliJ, VS Code, Eclipse)
 
 ### Set credentials
