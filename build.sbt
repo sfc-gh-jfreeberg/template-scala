@@ -8,7 +8,7 @@ lazy val root = (project in file("."))
   )
 
 libraryDependencies ++= Seq(
-  "com.snowflake" % "snowpark" % "1.7.0" % "provided",
+  "com.snowflake" % "snowpark" % "1.7.0",
   "org.scalactic" %% "scalactic" % "3.2.15",
   "org.scalatest" %% "scalatest" % "3.2.15" % "test"
 )

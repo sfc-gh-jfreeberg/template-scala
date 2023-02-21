@@ -15,4 +15,4 @@
 .vscode/
 
 # Properties file for local development
-src/main/resources/dev.properties
+dev.properties

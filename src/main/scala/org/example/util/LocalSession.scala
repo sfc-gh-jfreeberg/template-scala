@@ -8,7 +8,7 @@ object LocalSession {
     try {
       val password = System.getenv("SNOWFLAKE_PASSWORD")
       Session.builder
-        .configFile("src/main/resources/dev.properties")
+        .configFile("dev.properties")
         .config("PASSWORD", password)
         .create
     } catch {

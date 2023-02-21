@@ -53,4 +53,4 @@ jobs:
           SNOWSQL_DEST=~/snowflake SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-1.2.24-linux_x86_64.bash
 
       - name: Deploy jobs
-        run: ~/snowflake/snowsql -f sql/resources.sql
+        run: ~/snowflake/snowsql -f resources.sql
