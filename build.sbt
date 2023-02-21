@@ -12,3 +12,8 @@ libraryDependencies ++= Seq(
   "org.scalactic" %% "scalactic" % "3.2.15",
   "org.scalatest" %% "scalatest" % "3.2.15" % "test"
 )
+
+assembly / assemblyMergeStrategy  := {
+  case PathList("META-INF", _*) => MergeStrategy.discard
+  case _                        => MergeStrategy.first
+}
