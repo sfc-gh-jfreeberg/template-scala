@@ -28,7 +28,7 @@ object App {
           col("World")))
       .show
 
-    "Hello world"
+    msg
   }
 
   def main(args: Array[String]): Unit = {
