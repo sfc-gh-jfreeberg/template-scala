@@ -39,11 +39,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
-      - name: Install scalafmt
-        run: |
-          brew install coursier/formulas/coursier
-          coursier install scalafmt
+      - uses: coursier/cache-action@v6
+
+      - name: Set up Coursier and scalafmt
+        uses: coursier/setup-action@v1
+        with:
+          apps: scalafmt
       
       - name: Lint code
         run: scalafmt --test  

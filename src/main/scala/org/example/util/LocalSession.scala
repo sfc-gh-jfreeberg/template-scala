@@ -4,7 +4,7 @@ import com.snowflake.snowpark.Session
 
 object LocalSession {
   def getLocalSession(): Session = {
-      
+
     try {
       createSessionFromSNOWSQLEnvVars()
     } catch {
@@ -19,14 +19,14 @@ object LocalSession {
 
   private def createSessionFromSNOWSQLEnvVars(): Session = {
     val configMap: Map[String, String] = Map(
-      "URL" -> (getEnv("SNOWSQL_ACCOUNT")+".snowflakecomputing.com"),
+      "URL" -> (getEnv("SNOWSQL_ACCOUNT") + ".snowflakecomputing.com"),
       "USER" -> getEnv("SNOWSQL_USER"),
       "PASSWORD" -> getEnv("SNOWSQL_PWD"),
       "DB" -> getEnv("SNOWSQL_DATABASE"),
       "SCHEMA" -> getEnv("SNOWSQL_SCHEMA"),
       "WAREHOUSE" -> getEnv("SNOWSQL_WAREHOUSE")
     )
-    
+
     Session.builder.configs(configMap).create
   }
 
@@ -34,8 +34,9 @@ object LocalSession {
   private def getEnv(s: String): String = {
     val v = System.getenv(s)
     v match {
-      case null => throw new NullPointerException(f"Environment variable, ${s}, not found")
+      case null =>
+        throw new NullPointerException(f"Environment variable, ${s}, not found")
       case _: String => v
     }
-  } 
+  }
 }
