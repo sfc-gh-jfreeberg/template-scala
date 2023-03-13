@@ -7,15 +7,14 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <artifactId>template-scala</artifactId>
     <version>1</version>
 
-    <name></name>
-    <description>My wonderfull scala app</description>
-    <url>http://maven.apache.org</url>
+    <name>Scala project template for Snowflake</name>
+    <description>A template for Scala development on Snowflake, providing boilerplate for UDFs, stored procedures, testing, and CI/CD.</description>
+    <url>https://github.com/snowflake-labs/template-scala</url>
 
     <licenses>
         <license>
             <name>Apache 2.0</name>
-            <url>http://....</url>
-            <distribution>repo</distribution>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
 
