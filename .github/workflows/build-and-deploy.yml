@@ -15,7 +15,7 @@ env:
   SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
   SNOWSQL_SCHEMA: ${{ secrets.SNOWSQL_SCHEMA }}
   SNOWSQL_WAREHOUSE: ${{ secrets.SNOWSQL_WAREHOUSE }}
-  ARTIFACT_NAME: scala-app-${{ github.ref_name }}.jar
+  ARTIFACT_NAME: scala-sources-${{ github.ref_name }}.jar
 
 jobs:
   build:
@@ -62,4 +62,8 @@ jobs:
           SNOWSQL_DEST=~/snowflake SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-1.2.24-linux_x86_64.bash
 
       - name: Deploy jobs
-        run: ~/snowflake/snowsql -f resources.sql
+        run: |
+          ~/snowflake/snowsql \
+            -f resources.sql \
+            -o variable_substitution=true \
+            --variable artifact_name=${{ env.ARTIFACT_NAME }}
