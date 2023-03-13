@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  ARTIFACT_NAME: scala-app-${{GITHUB_REF_NAME}}.jar
+  ARTIFACT_NAME: scala-app-${{ github.ref_name }}.jar
   SNOWSQL_ACCOUNT: ${{ secrets.SNOWSQL_ACCOUNT }}
   SNOWSQL_USER: ${{ secrets.SNOWSQL_USER }}
   SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
@@ -36,13 +36,13 @@ jobs:
       - name: Build app
         run: sbt assembly
 
-      - name: Rename artifact with ref
-        run: mv ${{ github.workspace }}/target/scala-2.12/*.jar $ARTIFACT_NAME
+      - name: Rename artifact with commit ID or release name
+        run: mv ${{ github.workspace }}/target/scala-2.12/template-scala*.jar $ARTIFACT_NAME
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: scala-app-${{GITHUB_REF_NAME}}
+          name: scala-app-${{ github.ref_name}}
           path: $ARTIFACT_NAME
 
   deploy:
@@ -54,7 +54,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: scala-app-${{GITHUB_REF_NAME}}
+          name: scala-app-${{github.ref_name}}
 
       - name: Install SnowSQL
         run: |
