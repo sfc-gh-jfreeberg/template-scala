@@ -12,7 +12,5 @@
 .metals/
 .bloop/
 
-.vscode/
-
 # Properties file for local development
 dev.properties

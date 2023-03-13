@@ -4,8 +4,12 @@ on:
   push:
     branches:
       - main
-
+  release:
+    - published
   workflow_dispatch:
+
+env:
+  ARTIFACT_NAME: scala-app-${{GITHUB_REF_NAME}}.jar
 
 jobs:
   build:
@@ -26,11 +30,14 @@ jobs:
       - name: Build app
         run: sbt assembly
 
+      - name: Rename artifact with ref
+        run: mv ${{ github.workspace }}/target/scala-2.12/*.jar $ARTIFACT_NAME
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: java-app
-          path: '${{ github.workspace }}/target/scala-2.12/*.jar'
+          name: scala-app-${{GITHUB_REF_NAME}}
+          path: $ARTIFACT_NAME
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,7 +55,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: java-app
+          name: scala-app-${{GITHUB_REF_NAME}}
 
       - name: Install SnowSQL
         run: |
