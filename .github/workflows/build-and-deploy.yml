@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: scala-app-${{ github.ref_name}}
-          path: $ARTIFACT_NAME
+          path: ${{ env.ARTIFACT_NAME }}
 
   deploy:
     runs-on: ubuntu-latest
