@@ -6,7 +6,7 @@ object LocalSession {
   def getLocalSession(): Session = {
 
     try {
-      val password = System.getenv("SNOWFLAKE_PASSWORD")
+      val password = System.getenv("SNOWSQL_PASSWORD")
       Session.builder
         .configFile("dev.properties")
         .config("PASSWORD", password)
