@@ -9,13 +9,13 @@ on:
   workflow_dispatch:
 
 env:
-  ARTIFACT_NAME: scala-app-${{ github.ref_name }}.jar
   SNOWSQL_ACCOUNT: ${{ secrets.SNOWSQL_ACCOUNT }}
   SNOWSQL_USER: ${{ secrets.SNOWSQL_USER }}
   SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
   SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
   SNOWSQL_SCHEMA: ${{ secrets.SNOWSQL_SCHEMA }}
   SNOWSQL_WAREHOUSE: ${{ secrets.SNOWSQL_WAREHOUSE }}
+  ARTIFACT_NAME: scala-app-${{ github.ref_name }}.jar
 
 jobs:
   build:
@@ -37,7 +37,7 @@ jobs:
         run: sbt assembly
 
       - name: Rename artifact with commit ID or release name
-        run: mv ${{ github.workspace }}/target/scala-2.12/template-scala*.jar $ARTIFACT_NAME
+        run: mv ${{ github.workspace }}/target/scala-2.12/template-scala*.jar ${{ env.ARTIFACT_NAME }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
