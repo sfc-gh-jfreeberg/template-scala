@@ -20,13 +20,12 @@ Set your account URL, username, role, database, and schema in [dev.properties](d
 Next, set an environment variable with your Snowflake password:
 
 ```bash
-# Linux/MacOS
-set SNOWFLAKE_PASSWORD=<your-password>
-```
-
-```bash
-# Windows
-$env:SNOWFLAKE_PASSWORD = <your-password>
+set SNOWSQL_ACCOUNT=<replace with your account identifer>
+set SNOWSQL_USER=<replace with your username>
+set SNOWSQL_PWD=<replace with your password>
+set SNOWSQL_DATABASE=<replace with your database>
+set SNOWSQL_SCHEMA=<replace with your schema>
+set SNOWSQL_WAREHOUSE=<replace with your warehouse>
 ```
 
 Optional: You can set this env var permanently by editing your bash profile (on Linux/MacOS) or 
@@ -38,22 +37,21 @@ Once you've set your credentials, you can test your connection by running the `r
 in [`App.scala`](src/main/scala/org/example/procedure/App.scala). You can run this method directly from your IDE, or by
 running `sbt run`.
 
-You should see output like this:
+You should see the following output in your terminal:
 
 ```
-------------------------------------------------------
-|"""ACCOUNT"".""PUBLIC"".SNOWPARK_TEMP_FUN...        |
-------------------------------------------------------
-|Welcome to Snowflake!                               |
-|Learn more: https://www.snowflake.com/snowpark/     |
-------------------------------------------------------
+---------------------------------------------------
+|"Hello world"                                    |
+---------------------------------------------------
+|Welcome to Snowflake!                            |
+|Learn more: https://www.snowflake.com/snowpark/  |
+---------------------------------------------------
 ```
 
 ### Deploy the contents
 
 The GitHub Actions [workflow file](.github/workflows/build-and-deploy.yml) allows you to continously deploy your objects to Snowflake. When you're ready,
-create a secret in your GitHub repository named `SNOWSQL_PASSWORD` with your account password. Then, replace the placeholders in the [workflow file](.github/workflows/build-and-deploy.yml)
-with your username, database, and other account information.
+create secrets in your GitHub repository with the same name and values as the environment variables you created earler (`SNOWSQL_PWD`, `SNOWSQL_ACCOUNT`, etc.). The workflow will create a stage, upload the compiled .jar, and create the stored procedure object. For more information, see [`resources.sql`](resources.sql).
 
 ## Project Structure
 
