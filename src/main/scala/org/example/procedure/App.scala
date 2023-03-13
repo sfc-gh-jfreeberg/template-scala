@@ -9,23 +9,21 @@ import org.example.util.LocalSession
 object App {
 
   def run(session: Session, msg: String): String = {
-    val schema = StructType(Seq(
-      StructField("Hello", StringType),
-      StructField("World", StringType)))
+    val schema = StructType(
+      Seq(StructField("Hello", StringType), StructField("World", StringType))
+    )
 
     val data = Seq(
       Row.fromSeq(Seq("Welcome to ", "Snowflake!")),
-      Row.fromSeq(Seq("Learn more: ", "https://www.snowflake.com/snowpark/")))
+      Row.fromSeq(Seq("Learn more: ", "https://www.snowflake.com/snowpark/"))
+    )
 
     val df = session.createDataFrame(data, schema)
 
     val func = session.udf.registerTemporary(ExampleFunction.combine)
 
     df
-      .select(
-        func.apply(
-          col("Hello"),
-          col("World")))
+      .select(func.apply(col("Hello"), col("World")))
       .show
 
     msg

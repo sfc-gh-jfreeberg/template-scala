@@ -13,7 +13,9 @@ object LocalSession {
         .create
     } catch {
       case e: NullPointerException =>
-        println("ERROR: Environment variable, SNOWFLAKE_PASSWORD, not found. Please set this variable");
+        println(
+          "ERROR: Environment variable, SNOWFLAKE_PASSWORD, not found. Please set this variable"
+        );
         e.printStackTrace()
         null
     }

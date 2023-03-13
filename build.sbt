@@ -4,7 +4,7 @@ ThisBuild / scalaVersion := "2.12.17"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "scala-template"
+    name := "template-scala"
   )
 
 libraryDependencies ++= Seq(
@@ -13,7 +13,7 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.2.15" % "test"
 )
 
-assembly / assemblyMergeStrategy  := {
+assembly / assemblyMergeStrategy := {
   case PathList("META-INF", _*) => MergeStrategy.discard
   case _                        => MergeStrategy.first
 }
