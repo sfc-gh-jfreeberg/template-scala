@@ -1,6 +1,5 @@
 package org.example.procedure
 
-import org.example.procedure.App
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
 import org.scalatest.funspec.AnyFunSpec
