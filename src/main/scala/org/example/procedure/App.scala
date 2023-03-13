@@ -8,7 +8,7 @@ import org.example.util.LocalSession
 
 object App {
 
-  def run(session: Session, msg: String): String = {
+  def run(session: Session): Long = {
     val schema = StructType(
       Seq(StructField("Hello", StringType), StructField("World", StringType))
     )
@@ -22,16 +22,18 @@ object App {
 
     val func = session.udf.registerTemporary(ExampleFunction.combine)
 
-    df
-      .select(func.apply(col("Hello"), col("World")))
-      .show
+    val df2 = df
+      .select(func.apply(col("Hello"), col("World")).as("Hello world"))
+      .sort(col("Hello world").desc)
 
-    msg
+    df2.show
+
+    df2.count()
   }
 
   def main(args: Array[String]): Unit = {
     val session = LocalSession.getLocalSession()
 
-    run(session, "")
+    run(session)
   }
 }
