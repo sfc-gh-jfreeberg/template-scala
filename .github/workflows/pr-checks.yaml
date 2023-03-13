@@ -50,4 +50,4 @@ jobs:
           coursier install scalafmt
       
       - name: Lint code
-        run: scalafmt --test  
+        run: ./scalafmt --test  
