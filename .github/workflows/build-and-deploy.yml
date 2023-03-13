@@ -10,6 +10,12 @@ on:
 
 env:
   ARTIFACT_NAME: scala-app-${{GITHUB_REF_NAME}}.jar
+  SNOWSQL_ACCOUNT: ${{ secrets.SNOWSQL_ACCOUNT }}
+  SNOWSQL_USER: ${{ secrets.SNOWSQL_USER }}
+  SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
+  SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
+  SNOWSQL_SCHEMA: ${{ secrets.SNOWSQL_SCHEMA }}
+  SNOWSQL_WAREHOUSE: ${{ secrets.SNOWSQL_WAREHOUSE }}
 
 jobs:
   build:
@@ -42,13 +48,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    env:
-      SNOWSQL_ACCOUNT: '<REPLACE: your account id>'
-      SNOWSQL_USER: '<REPLACE: your username>'
-      SNOWSQL_DATABASE: '<REPLACE: your database>'
-      SNOWSQL_SCHEMA: '<REPLACE: your public>'
-      SNOWSQL_WAREHOUSE: '<REPLACE: your warehouse>'
-      SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
     steps:
       - uses: actions/checkout@v3  # Necessary for the resources.sql file
 
