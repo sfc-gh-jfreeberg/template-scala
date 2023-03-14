@@ -15,9 +15,7 @@ To develop your applications locally, you will need
 
 ### Set credentials
 
-Set your account URL, username, role, database, and schema in [dev.properties](dev.properties).
-
-Next, set an environment variable with your Snowflake password:
+Set the following environment variables with your Snowflake account information:
 
 ```bash
 set SNOWSQL_ACCOUNT=<replace with your account identifer>
