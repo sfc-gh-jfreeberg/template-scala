@@ -1,5 +1,5 @@
 
-!variables
+!variables;
 
 CREATE STAGE IF NOT EXISTS artifacts;
 
