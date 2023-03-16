@@ -64,9 +64,9 @@ create secrets in your GitHub repository with the same name and values as the en
 
 ## Project Structure
 
-- [procedure/](src/main/scala/com/example/procedure/): Directory for your stored procedures
-- [udf/](src/main/scala/com/example/udf/): Directory for your user-defined functions
-- [util/](src/main/scala/com/example/util/): Directory for methods/classes shared between procedures and UDFs 
+- [procedure/](src/main/scala/org/example/procedure): Directory for your stored procedures
+- [udf/](src/main/scala/org/example/udf): Directory for your user-defined functions
+- [util/](src/main/scala/org/example/util/): Directory for methods/classes shared between procedures and UDFs 
 - [resources.sql](resources.sql): A deployment script for your objects
 - [build-and-deploy.yaml](.github/workflows/build-and-deploy.yml): A GitHub Actions template to build and deploy your objects
 
